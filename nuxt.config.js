@@ -1,3 +1,5 @@
+import { VuetifyLoaderPlugin } from "vuetify-loader";
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -18,19 +20,30 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: "~/plugins/axios.js", ssr: false }],
+  plugins: [{ src: "~/plugins/axios.js", ssr: false }, "@/plugins/vuetify"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  ildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    transpile: ["vuetify/lib"],
+    plugins: [new VuetifyLoaderPlugin()],
+    loaders: {
+      sass: {
+        // @ts-ignore
+        additionalData: "@import '@/assets/styles/vuetify.scss'",
+      },
+    },
+  },
+
+  buildModules: ["@nuxtjs/vuetify"],
 
   store: true,
 };
