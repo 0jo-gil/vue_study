@@ -5,7 +5,7 @@ export default {
   head: {
     title: "frontend",
     htmlAttrs: {
-      lang: "en",
+      lang: "ko",
     },
     meta: [
       { charset: "utf-8" },
@@ -29,7 +29,7 @@ export default {
   ildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ["@nuxtjs/dotenv", "@nuxtjs/proxy"],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -43,7 +43,14 @@ export default {
     },
   },
 
-  buildModules: ["@nuxtjs/vuetify"],
+  buildModules: ["@nuxtjs/vuetify", "@nuxtjs/dotenv"],
+
+  proxy: {
+    "/api/": {
+      target: "http://localhost:8080",
+      // pathRewrite: { "^/api/": "/api/" },
+    },
+  },
 
   store: true,
 };

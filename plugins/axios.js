@@ -3,15 +3,17 @@ import axios from "axios";
 
 const client = axios.create();
 
-let API_URL = process.env.VUE_APP_API_URL;
-
 const headersConfig = {
   "Content-Type": "application/json;charset=utf-8",
   "Access-Control-Allow-Origin": "*",
 };
 
+const API_URL = process.env.VUE_APP_API_URL;
+
 const axiosPlugin = {
   install(Vue) {
+    // console.log(this.$config.baseUrl);
+
     Vue.prototype.$axios = {
       async request(method, url, data, header = {}) {
         let params = {};
@@ -24,14 +26,16 @@ const axiosPlugin = {
 
         if (!data) params = {};
 
+        console.log(header);
+
         const axiosParams = {
           method,
-          // url: `${API_URL}${url}`,
-          url: url,
+          url: `http://localhost:3000${url}`,
+          // url: url,
           ...params,
           headers: {
-            ...header,
             ...headersConfig,
+            ...header,
           },
           timeout: 30000,
         };

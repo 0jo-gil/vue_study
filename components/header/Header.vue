@@ -1,13 +1,12 @@
 <template>
-  <v-app>
-    <v-toolbar app>
-      <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat v-for="item in menu" :key="item.id">
-          <nuxt-link :to="{ path: item.url }">{{ item.title }}</nuxt-link>
-        </v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
-  </v-app>
+  <v-toolbar app>
+    <v-toolbar-title>logo</v-toolbar-title>
+    <v-toolbar-items class="hidden-xs-only">
+      <v-btn flat v-for="item in menu" :key="item.id">
+        <nuxt-link :to="{ path: item.url }">{{ item.title }}</nuxt-link>
+      </v-btn>
+    </v-toolbar-items>
+  </v-toolbar>
 </template>
 
 <script>
