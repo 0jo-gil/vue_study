@@ -1,6 +1,7 @@
 <template>
   <div>
-    <FormInput label="" placeholder="제목" />
+    <!-- <FormInput label="" placeholder="제목" /> -->
+    <input placeholder="제목" v-model="title" />
     <editor
       ref="editor"
       align="left"
@@ -8,6 +9,8 @@
       @change="editorChangeHandler"
     ></editor>
     <viewer v-if="toggle" :initialValue="text"></viewer>
+
+    <button @click="submitHandler">확인</button>
   </div>
 </template>
 
@@ -15,13 +18,33 @@
 export default {
   data() {
     return {
-      text: "????",
+      title: "",
+      text: "",
       toggle: false,
     };
   },
+  watch: {
+    title() {
+      console.log(this.title);
+    },
+  },
   methods: {
     editorChangeHandler() {
-      console.log(this.$refs.editor.$el);
+      let html = this.$refs.editor.$el.querySelector(
+        ".toastui-editor-ww-container .toastui-editor-contents"
+      ).innerHTML;
+
+      this.text = html;
+    },
+    submitHandler() {
+      this.$axios
+        .request("post", "/api/admin/post", {
+          title: this.title,
+          content: this.text,
+          categoryId: 1,
+        })
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
     },
   },
 };
