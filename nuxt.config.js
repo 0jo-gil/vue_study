@@ -20,7 +20,12 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: "~/plugins/axios.js", ssr: false }, "@/plugins/vuetify"],
+  plugins: [
+    { src: "~/plugins/axios", ssr: false },
+    { src: "~/plugins/vuetify", ssr: false },
+    { src: "~/plugins/tui-editor", ssr: false },
+    { src: "~/plugins/global-components", ssr: false },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
