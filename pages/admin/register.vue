@@ -15,18 +15,13 @@
 </template>
 
 <script>
+import writing from "../../mixins/writing";
 export default {
+  mixins: [writing],
   data() {
     return {
-      title: "",
-      text: "",
       toggle: false,
     };
-  },
-  watch: {
-    title() {
-      console.log(this.title);
-    },
   },
   methods: {
     editorChangeHandler() {
@@ -34,7 +29,7 @@ export default {
         ".toastui-editor-ww-container .toastui-editor-contents"
       ).innerHTML;
 
-      this.text = html;
+      this.setContent(html);
     },
     submitHandler() {
       this.$axios
