@@ -1,3 +1,5 @@
+// import postApiService from "@/services/postApiService";
+
 export const state = () => ({
   posts: [],
   detail: {},
@@ -13,8 +15,10 @@ export const mutations = {
 };
 
 export const actions = {
-  async getDetail({ commit }) {
-    const { data } = await this.$axios.get("/api/post/1");
-    commit("setDetail", data);
+  async getDetail({ commit }, id) {
+    console.log(this.$axios);
+    // const data = await postApiService.getDetail(id);
+    // console.log(data);
+    // commit("setDetail", data);
   },
 };
