@@ -24,6 +24,8 @@ const axiosPlugin = {
               data: data instanceof FormData ? data : JSON.stringify(data),
             });
 
+        console.log(params);
+
         if (!data) params = {};
 
         console.log(header);

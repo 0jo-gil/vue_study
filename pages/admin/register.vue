@@ -5,12 +5,14 @@
     <editor
       ref="editor"
       align="left"
+      :options="options"
       initial-edit-type="wysiwyg"
       @change="editorChangeHandler"
     ></editor>
     <viewer v-if="toggle" :initialValue="text"></viewer>
 
     <button @click="submitHandler">확인</button>
+    <button @click="publishPost">테스트</button>
   </div>
 </template>
 
@@ -21,6 +23,27 @@ export default {
   data() {
     return {
       toggle: false,
+      options: {
+        language: "ko",
+        hooks: {
+          addImageBlobHook: (blob, callback, type) => {
+            if (!blob) return false;
+            const formData = new FormData();
+            formData.append("file", blob);
+
+            this.$axios
+              .request("post", "/api/admin/post/image", formData, {
+                "Content-Type": "multipart/form-data",
+              })
+              .then((res) => {
+                callback(res.data[0], blob.name);
+              })
+              .catch((e) => {
+                console.log(e);
+              });
+          },
+        },
+      },
     };
   },
   methods: {
@@ -30,16 +53,6 @@ export default {
       ).innerHTML;
 
       this.setContent(html);
-    },
-    submitHandler() {
-      this.$axios
-        .request("post", "/api/admin/post", {
-          title: this.title,
-          content: this.text,
-          categoryId: 1,
-        })
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
     },
   },
 };

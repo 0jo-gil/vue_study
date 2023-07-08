@@ -29,5 +29,20 @@ export default {
       this.title = "";
       this.content = "";
     },
+
+    submitHandler() {
+      console.log(this.content);
+      this.$axios
+        .request("post", "/api/admin/post", {
+          title: this.title,
+          content: this.content,
+          categoryId: 1,
+        })
+        .then((res) => {
+          console.log(res);
+          // this.$router.push(`/post/${res.data}`);
+        })
+        .catch((err) => console.log(err));
+    },
   },
 };
