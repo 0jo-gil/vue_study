@@ -16,7 +16,7 @@ export const mutations = {
 
 export const actions = {
   async getDetail({ commit }, id) {
-    console.log(this.$axios);
+    // console.log(this.$axios);
     // const data = await postApiService.getDetail(id);
     // console.log(data);
     // commit("setDetail", data);

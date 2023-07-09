@@ -21,7 +21,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: "~/plugins/axios", ssr: false },
+    // { src: "~/plugins/axios", ssr: false },
+    { src: "~/plugins/api", ssr: false },
     { src: "~/plugins/vuetify", ssr: false },
     { src: "~/plugins/tui-editor", ssr: false },
     { src: "~/plugins/global-components", ssr: false },
@@ -34,7 +35,13 @@ export default {
   ildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/dotenv", "@nuxtjs/proxy"],
+  modules: [
+    "@nuxtjs/dotenv",
+    "@nuxtjs/proxy",
+    // https://blog.naver.com/yug311861/222905533767?&isInf=true&infParams=eyJzY2lkIjoxNzA3MDE3ODkyNjk3MjgsInNraWQiOjI5ODQ2NTIwNDIzNDE3NiwiY2lkIjo1MDU1NDM1MjM0NjU1MDQsInF1ZXJ5IjoiQVBJIn0=
+    "@nuxtjs/axios",
+    "cookie-universal-nuxt",
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -46,6 +53,7 @@ export default {
         additionalData: "@import '@/assets/styles/vuetify.scss'",
       },
     },
+    vendor: ["axios"],
   },
 
   buildModules: ["@nuxtjs/vuetify", "@nuxtjs/dotenv"],

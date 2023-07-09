@@ -12,8 +12,6 @@ const API_URL = process.env.VUE_APP_API_URL;
 
 const axiosPlugin = {
   install(Vue) {
-    // console.log(this.$config.baseUrl);
-
     Vue.prototype.$axios = {
       async request(method, url, data, header = {}) {
         let params = {};
@@ -50,4 +48,4 @@ const axiosPlugin = {
   },
 };
 
-Vue.use(axiosPlugin);
+Vue.use(axiosPlugin, axios);

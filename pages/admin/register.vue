@@ -31,16 +31,16 @@ export default {
             const formData = new FormData();
             formData.append("file", blob);
 
-            this.$axios
-              .request("post", "/api/admin/post/image", formData, {
-                "Content-Type": "multipart/form-data",
-              })
-              .then((res) => {
-                callback(res.data[0], blob.name);
-              })
-              .catch((e) => {
-                console.log(e);
-              });
+            // this.$axios
+            //   .request("post", "/api/admin/post/image", formData, {
+            //     "Content-Type": "multipart/form-data",
+            //   })
+            //   .then((res) => {
+            //     callback(res.data[0], blob.name);
+            //   })
+            //   .catch((e) => {
+            //     console.log(e);
+            //   });
           },
         },
       },

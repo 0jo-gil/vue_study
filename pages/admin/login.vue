@@ -24,12 +24,12 @@ export default {
       formData.append("username", this.username);
       formData.append("password", this.password);
 
-      this.$axios
-        .request("post", "/api/admin/member/login", formData, {
-          "Content-Type": "multipart/form-data",
-        })
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+      // this.$axios
+      //   .request("post", "/api/admin/member/login", formData, {
+      //     "Content-Type": "multipart/form-data",
+      //   })
+      //   .then((res) => console.log(res))
+      //   .catch((err) => console.log(err));
     },
   },
 };
