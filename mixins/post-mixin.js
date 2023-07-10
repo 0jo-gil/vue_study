@@ -9,9 +9,7 @@ export default {
       page: -1,
     };
   },
-  mounted() {
-    this.initializeObserver();
-  },
+  mounted() {},
 
   methods: {
     async getDetailPost(id) {
