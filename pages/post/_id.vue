@@ -1,30 +1,25 @@
 <template>
   <div>
-    <div>{{ post.title }}</div>
-    <div v-html="post.content"></div>
+    <div>{{ detailPost.title }}</div>
+    <div v-html="detailPost.content"></div>
   </div>
 </template>
 
 <script>
-import post from "@/mixins/post";
+import postMixin from "@/mixins/post-mixin";
 export default {
-  mixins: [post],
+  mixins: [postMixin],
   data() {
-    return {
-      post: {},
-    };
+    return {};
   },
   created() {
-    try {
-      let id = this.$route.params.id;
-      const res = this.$axios
-        .request("get", `/api/admin/post/${id}`)
-        .then((res) => {
-          this.post = res.data;
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    let id = this.$route.params.id;
+    this.getDetailPost(id);
+  },
+  watch: {
+    detailPost(newVal, oldVal) {
+      console.log(newVal);
+    },
   },
 };
 </script>

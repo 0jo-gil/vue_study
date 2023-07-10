@@ -39,7 +39,7 @@ export default {
     "@nuxtjs/dotenv",
     "@nuxtjs/proxy",
     // https://blog.naver.com/yug311861/222905533767?&isInf=true&infParams=eyJzY2lkIjoxNzA3MDE3ODkyNjk3MjgsInNraWQiOjI5ODQ2NTIwNDIzNDE3NiwiY2lkIjo1MDU1NDM1MjM0NjU1MDQsInF1ZXJ5IjoiQVBJIn0=
-    "@nuxtjs/axios",
+    // "@nuxtjs/axios",
     "cookie-universal-nuxt",
   ],
 
