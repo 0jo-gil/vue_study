@@ -1,7 +1,8 @@
 <template>
   <div>
     <!-- <FormInput label="" placeholder="제목" /> -->
-    <input placeholder="제목" v-model="title" />
+    <input placeholder="제목" name="title" @change="changeHandler($event)" />
+    <input type="file" @change="thumbnailChangeHandler($event)" />
     <editor
       ref="editor"
       align="left"
@@ -12,14 +13,13 @@
     <viewer v-if="toggle" :initialValue="text"></viewer>
 
     <button @click="submitHandler">확인</button>
-    <button @click="publishPost">테스트</button>
   </div>
 </template>
 
 <script>
-import writing from "../../mixins/writing";
+import WritingMixin from "@/mixins/writing-mixin";
 export default {
-  mixins: [writing],
+  mixins: [WritingMixin],
   data() {
     return {
       toggle: false,
@@ -28,32 +28,26 @@ export default {
         hooks: {
           addImageBlobHook: (blob, callback, type) => {
             if (!blob) return false;
+
             const formData = new FormData();
+
             formData.append("file", blob);
 
-            // this.$axios
-            //   .request("post", "/api/admin/post/image", formData, {
-            //     "Content-Type": "multipart/form-data",
-            //   })
-            //   .then((res) => {
-            //     callback(res.data[0], blob.name);
-            //   })
-            //   .catch((e) => {
-            //     console.log(e);
-            //   });
+            this.$api
+              .request("post", "/api/admin/post/image", formData, {
+                "Content-Type": "multipart/form-data",
+              })
+              .then((res) => {
+                callback(res.data[0], blob.name);
+              })
+              .catch((e) => {
+                console.log(e);
+              });
           },
         },
       },
     };
   },
-  methods: {
-    editorChangeHandler() {
-      let html = this.$refs.editor.$el.querySelector(
-        ".toastui-editor-ww-container .toastui-editor-contents"
-      ).innerHTML;
-
-      this.setContent(html);
-    },
-  },
+  methods: {},
 };
 </script>
