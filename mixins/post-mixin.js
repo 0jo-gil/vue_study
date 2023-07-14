@@ -24,6 +24,12 @@ export default {
         .then((res) => this.posts.push(...res.data.content))
         .catch((error) => console.log(error));
     },
+    async deletePost(id) {
+
+    },
+    async updatePost(id) {
+
+    },
     initializeObserver() {
       const options = {
         root: null,
